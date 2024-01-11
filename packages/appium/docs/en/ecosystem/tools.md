@@ -18,6 +18,11 @@ Find downloads and more information on its GitHub page: [Appium Inspector](https
 
 ### Appium Doctor
 
+!!! warning
+
+    The standalone `appium-doctor` tool is deprecated since Appium 2.4.0, as its functionality is
+    now [included in all official drivers](../cli/extensions.md#doctor).
+
 The `appium-doctor` CLI tool can be used to validate proper environment setup for Android and iOS
 automation, and identify any common configuration issues. It can be installed with `npm`:
 
