@@ -34,3 +34,9 @@ These tools are not maintained by the Appium team and can be used to assist with
 |Name|Description|Supported By|
 |---|---|---|
 |[appium-installer](https://github.com/AppiumTestDistribution/appium-installer)|Help set up an Appium environment for Android and iOS|`@AppiumTestDistribution`|
+|[appium-kit-vscode](https://github.com/sudharsan-selvaraj/appium-kit-vscode)|Visual Studio Code plugin for managing the Appium environment|`@sudharsan-selvaraj`|
+
+!!! note
+
+    If you maintain an Appium tool that you would like to be listed in the Appium docs, feel free
+    to make a PR to add it to this section with a link to the tool documentation.

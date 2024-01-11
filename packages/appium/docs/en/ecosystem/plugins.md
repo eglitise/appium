@@ -32,7 +32,9 @@ These plugins are not maintained by the Appium team and can provide additional f
 |<div style="width:6em">Plugin</div>|<div style="width:19em">Installation Key</div>|Description|<div style="width:13em">Supported By</div>|
 |---|---|---|---|
 |[AltUnity](https://github.com/headspinio/appium-altunity-plugin)|`--source=npm appium-altunity-plugin`|Target Unity games and apps for automation with a new context, via the AltUnityTester framework|HeadSpin|
+|[Dashboard](https://github.com/sudharsan-selvaraj/appium-dashboard-plugin)|`--source=npm appium-dashboard`|Adds a dashboard for aggregating test information like session and device logs, video recordings, and more|`@sudharsan-selvaraj`|
 |[Device Farm](https://github.com/AppiumTestDistribution/appium-device-farm)|`--source=npm appium-device-farm`|Manage and create driver session on connected android devices and iOS Simulators.|`@AppiumTestDistribution`|
+|[Interceptor](https://github.com/AppiumTestDistribution/appium-interceptor-plugin)|`--source=npm appium-interceptor`|Intercept and mock API requests and responses|`@AppiumTestDistribution`|
 |[OCR](https://github.com/jlipps/appium-ocr-plugin)|`--source=npm appium-ocr-plugin`|Find elements via OCR text|`@jlipps`|
 |[Reporter](https://github.com/AppiumTestDistribution/appium-reporter-plugin)|`--source=npm appium-reporter-plugin`|Generates standalone consolidated html report with screenshots. Reports can be fetched from appium server, without worrying about heavy lifting such as screenshot capturing, report generation etc.|`@AppiumTestDistribution`|
 
