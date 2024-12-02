@@ -83,6 +83,8 @@
   },
   "devDependencies": {
     "@colors/colors": "1.6.0",
+    "@eslint/eslintrc": "2.1.4",
+    "@eslint/js": "8.57.1",
     "@tsconfig/node14": "14.1.2",
     "@types/chai": "5.0.1",
     "@types/chai-as-promised": "8.0.1",
