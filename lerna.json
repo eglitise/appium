@@ -13,8 +13,7 @@
     },
     "version": {
       "conventionalCommits": true,
-      "createRelease": "github",
-      "allowBranch": ["master", "appium3"]
+      "allowBranch": ["master", "rc-test"]
     }
   },
   "ignoreChanges": ["**/test/**", "**/*.md"],
