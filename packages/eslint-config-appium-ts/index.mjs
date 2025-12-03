@@ -6,9 +6,10 @@ import js from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
 import {defineConfig, globalIgnores} from 'eslint/config';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import {createTypeScriptImportResolver} from 'eslint-import-resolver-typescript';
 import globals from 'globals';
 import pluginPromise from 'eslint-plugin-promise';
-import importPlugin from 'eslint-plugin-import';
+import {importX} from 'eslint-plugin-import-x';
 import mochaPlugin from 'eslint-plugin-mocha';
 import nodePlugin from 'eslint-plugin-n';
 import {configs as tsConfigs} from 'typescript-eslint';
@@ -30,6 +31,7 @@ export default defineConfig([
     },
     plugins: {
       '@stylistic': stylistic,
+      'import-x': importX,
       js,
       n: nodePlugin,
       promise: pluginPromise,
@@ -37,22 +39,16 @@ export default defineConfig([
     extends: [
       js.configs.recommended,
       'promise/flat/recommended',
-      importPlugin.flatConfigs.recommended,
+      'import-x/flat/recommended',
       tsConfigs.recommended,
       eslintConfigPrettier,
     ],
     settings: {
-      /**
-      * This stuff enables `eslint-plugin-import` to resolve TS modules.
-      */
-      'import/parsers': {
-        '@typescript-eslint/parser': ['.ts', '.tsx', '.mtsx'],
-      },
-      'import/resolver': {
-        typescript: {
+      'import-x/resolver-next': [
+        createTypeScriptImportResolver({
           project: ['tsconfig.json', './packages/*/tsconfig.json'],
-        },
-      },
+        })
+      ],
     },
     rules: {
       '@stylistic/array-bracket-spacing': 2,
@@ -122,10 +118,8 @@ export default defineConfig([
        */
       '@typescript-eslint/no-unused-vars': 'warn',
 
-      'import/export': 2,
-      'import/named': 'warn',
-      'import/no-duplicates': 2,
-      'import/no-unresolved': 2,
+      'import-x/named': 'warn',
+      'import-x/no-duplicates': 2,
 
       'n/no-deprecated-api': 1,
 
@@ -184,7 +178,7 @@ export default defineConfig([
        */
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-unused-expressions': 'off',
-      'import/no-named-as-default-member': 'off',
+      'import-x/no-named-as-default-member': 'off',
       'mocha/consistent-spacing-between-blocks': 'off',
       'mocha/max-top-level-suites': 'off',
       'mocha/no-exclusive-tests': 2,
