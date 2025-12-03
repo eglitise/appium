@@ -51,28 +51,28 @@ export default defineConfig([
       ],
     },
     rules: {
-      '@stylistic/array-bracket-spacing': 2,
+      '@stylistic/array-bracket-spacing': 'error',
       '@stylistic/arrow-parens': 'warn',
-      '@stylistic/arrow-spacing': 2,
-      '@stylistic/comma-spacing': 2,
-      '@stylistic/key-spacing': 2,
-      '@stylistic/keyword-spacing': 2,
-      '@stylistic/no-multi-spaces': 2,
-      '@stylistic/no-trailing-spaces': 2,
-      '@stylistic/no-whitespace-before-property': 2,
+      '@stylistic/arrow-spacing': 'error',
+      '@stylistic/comma-spacing': 'error',
+      '@stylistic/key-spacing': 'error',
+      '@stylistic/keyword-spacing': 'error',
+      '@stylistic/no-multi-spaces': 'error',
+      '@stylistic/no-trailing-spaces': 'error',
+      '@stylistic/no-whitespace-before-property': 'error',
       '@stylistic/quotes': [
-        2,
+        'error',
         'single',
         {
           avoidEscape: true,
           allowTemplateLiterals: 'always',
         },
       ],
-      '@stylistic/semi': 2,
-      '@stylistic/space-before-blocks': 2,
-      '@stylistic/space-in-parens': 2,
-      '@stylistic/space-infix-ops': 2,
-      '@stylistic/space-unary-ops': 2,
+      '@stylistic/semi': 'error',
+      '@stylistic/space-before-blocks': 'error',
+      '@stylistic/space-in-parens': 'error',
+      '@stylistic/space-infix-ops': 'error',
+      '@stylistic/space-unary-ops': 'error',
 
       /**
        * This rule is configured to warn if a `@ts-ignore` or `@ts-expect-error` directive is used
@@ -119,35 +119,35 @@ export default defineConfig([
       '@typescript-eslint/no-unused-vars': 'warn',
 
       'import-x/named': 'warn',
-      'import-x/no-duplicates': 2,
+      'import-x/no-duplicates': 'error',
 
-      'n/no-deprecated-api': 1,
+      'n/no-deprecated-api': 'warn',
 
-      'promise/catch-or-return': 1,
+      'promise/catch-or-return': 'warn',
       /**
        * Allow native `Promise`s.
        * @remarks Originally, this was so that we could use [bluebird](https://npm.im/bluebird)
        * everywhere, but this is not strictly necessary.
        */
       'promise/no-native': 'off',
-      'promise/no-return-wrap': 1,
-      'promise/prefer-await-to-callbacks': 1,
-      'promise/prefer-await-to-then': 1,
-      'promise/param-names': 1,
+      'promise/no-return-wrap': 'warn',
+      'promise/prefer-await-to-callbacks': 'warn',
+      'promise/prefer-await-to-then': 'warn',
+      'promise/param-names': 'warn',
 
-      'arrow-body-style': [1, 'as-needed'],
-      'curly': [2, 'all'],
-      'dot-notation': 2,
-      'eqeqeq': [2, 'smart'],
-      'no-console': 2,
+      'arrow-body-style': ['warn', 'as-needed'],
+      'curly': ['error', 'all'],
+      'dot-notation': 'error',
+      'eqeqeq': ['error', 'smart'],
+      'no-console': 'error',
       'no-dupe-class-members': 'off',
-      'no-empty': 0,
-      'no-prototype-builtins': 1,
+      'no-empty': 'off',
+      'no-prototype-builtins': 'warn',
       'no-redeclare': 'off',
-      'no-var': 2,
-      'object-shorthand': 2,
-      'radix': [2, 'always'],
-      'require-atomic-updates': 0,
+      'no-var': 'error',
+      'object-shorthand': 'error',
+      'radix': ['error', 'always'],
+      'require-atomic-updates': 'off',
       /**
        * Allow `async` functions without `await`.
        * @remarks Originally, this was to be more clear about the return value of a function, but with
@@ -181,9 +181,9 @@ export default defineConfig([
       'import-x/no-named-as-default-member': 'off',
       'mocha/consistent-spacing-between-blocks': 'off',
       'mocha/max-top-level-suites': 'off',
-      'mocha/no-exclusive-tests': 2,
+      'mocha/no-exclusive-tests': 'error',
       'mocha/no-exports': 'off',
-      'mocha/no-mocha-arrows': 2,
+      'mocha/no-mocha-arrows': 'error',
       'mocha/no-pending-tests': 'off',
       'mocha/no-setup-in-describe': 'off',
     },
