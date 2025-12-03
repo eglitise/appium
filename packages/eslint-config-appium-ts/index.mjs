@@ -32,10 +32,10 @@ export default defineConfig([
     },
     extends: [
       'js/recommended',
-      eslintConfigPrettier,
       'promise/flat/recommended',
       importPlugin.flatConfigs.recommended,
       tsConfigs.recommended,
+      eslintConfigPrettier,
     ],
     settings: {
       /**
