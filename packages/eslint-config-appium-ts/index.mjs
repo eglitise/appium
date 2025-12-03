@@ -3,29 +3,23 @@ import fs from 'node:fs';
 
 import {includeIgnoreFile} from '@eslint/compat';
 import js from '@eslint/js';
+import {defineConfig, globalIgnores} from 'eslint/config';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import globals from 'globals';
 import pluginPromise from 'eslint-plugin-promise';
 import importPlugin from 'eslint-plugin-import';
 import mochaPlugin from 'eslint-plugin-mocha';
-import {configs as tsConfigs, parser as tsParser, plugin as tsPlugin} from 'typescript-eslint';
+import {configs as tsConfigs} from 'typescript-eslint';
 
 const gitignorePath = path.resolve(process.cwd(), '.gitignore');
 
-export default [
-  js.configs.recommended,
-  eslintConfigPrettier,
-  pluginPromise.configs['flat/recommended'],
-  importPlugin.flatConfigs.recommended,
-  ...tsConfigs.recommended,
-
+export default defineConfig([
   {
     name: 'Script Files',
     files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
-      parser: tsParser,
       globals: {
         ...globals.node,
         NodeJS: 'readonly',
@@ -33,8 +27,16 @@ export default [
       },
     },
     plugins: {
-      '@typescript-eslint': tsPlugin,
+      js,
+      promise: pluginPromise,
     },
+    extends: [
+      'js/recommended',
+      eslintConfigPrettier,
+      'promise/flat/recommended',
+      importPlugin.flatConfigs.recommended,
+      tsConfigs.recommended,
+    ],
     settings: {
       /**
       * This stuff enables `eslint-plugin-import` to resolve TS modules.
@@ -185,11 +187,13 @@ export default [
   },
 
   {
-    ...mochaPlugin.configs.recommended,
     name: 'Test Files',
     files: ['**/test/**', '*.spec.*js', '-specs.*js', '*.spec.ts'],
+    plugins: {
+      mocha: mochaPlugin,
+    },
+    extends: [mochaPlugin.configs.recommended],
     rules: {
-      ...mochaPlugin.configs.recommended.rules,
       /**
        * Both `@ts-expect-error` and `@ts-ignore` are allowed to be used with impunity in tests.
        * @remarks We often test things which explicitly violate types.
@@ -212,17 +216,12 @@ export default [
       'mocha/no-setup-in-describe': 'off',
     },
   },
-
-  {
-    name: 'Ignores',
-    ignores: [
-      ...(fs.existsSync(gitignorePath) ? includeIgnoreFile(gitignorePath).ignores : []),
-      '**/.*',
-      '**/*-d.ts',
-      '**/*.min.js',
-      '**/build/**',
-      '**/coverage/**',
-    ],
-  }
-
-];
+  fs.existsSync(gitignorePath) ? includeIgnoreFile(gitignorePath) : {},
+  globalIgnores([
+    '**/.*',
+    '**/*-d.ts',
+    '**/*.min.js',
+    '**/build/**',
+    '**/coverage/**',
+  ]),
+]);

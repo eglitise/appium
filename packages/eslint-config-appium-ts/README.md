@@ -7,21 +7,25 @@
 
 ## Usage
 
-Install the package:
+Assuming you already have ESLint installed, you can install this configuration like so:
 
 ```bash
 npm install @appium/eslint-config-appium-ts --save-dev
 ```
 
-And then, in your `eslint.config.mjs` file, extend the configuration:
+Then add it to your `eslint.config.mjs` file:
 
 ```js
 import appiumConfig from '@appium/eslint-config-appium-ts';
+import {defineConfig} from 'eslint/config';
 
-export default [
-  ...appiumConfig,
-  // add any other config changes 
-];
+export default defineConfig([
+  {
+    files: ["**/*.js"],
+    extends: [appiumConfig],
+    // add any other config changes 
+  },
+]);
 ```
 
 ## Notes
