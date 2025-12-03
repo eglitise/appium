@@ -116,13 +116,6 @@ export default defineConfig([
       'arrow-body-style': [1, 'as-needed'],
       'arrow-parens': [1, 'always'],
       'arrow-spacing': 2,
-      /**
-       * Disables the `brace-style` rule.
-       * @remarks Due to the way `prettier` sometimes formats extremely verbose types, sometimes it is necessary
-       * to indent in a way that is not allowed by the default `brace-style` rule.
-       */
-      'brace-style': 'off',
-      'comma-dangle': 0,
       'comma-spacing': [
         2,
         {
