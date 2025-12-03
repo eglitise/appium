@@ -10,6 +10,7 @@ import globals from 'globals';
 import pluginPromise from 'eslint-plugin-promise';
 import importPlugin from 'eslint-plugin-import';
 import mochaPlugin from 'eslint-plugin-mocha';
+import nodePlugin from 'eslint-plugin-n';
 import {configs as tsConfigs} from 'typescript-eslint';
 
 const gitignorePath = path.resolve(process.cwd(), '.gitignore');
@@ -30,10 +31,11 @@ export default defineConfig([
     plugins: {
       '@stylistic': stylistic,
       js,
+      n: nodePlugin,
       promise: pluginPromise,
     },
     extends: [
-      'js/recommended',
+      js.configs.recommended,
       'promise/flat/recommended',
       importPlugin.flatConfigs.recommended,
       tsConfigs.recommended,
@@ -125,6 +127,8 @@ export default defineConfig([
       'import/no-duplicates': 2,
       'import/no-unresolved': 2,
 
+      'n/no-deprecated-api': 1,
+
       'promise/catch-or-return': 1,
       /**
        * Allow native `Promise`s.
@@ -141,7 +145,6 @@ export default defineConfig([
       'curly': [2, 'all'],
       'dot-notation': 2,
       'eqeqeq': [2, 'smart'],
-      'no-buffer-constructor': 1,
       'no-console': 2,
       'no-dupe-class-members': 'off',
       'no-empty': 0,
