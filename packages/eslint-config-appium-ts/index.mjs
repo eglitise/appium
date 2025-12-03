@@ -73,7 +73,6 @@ export default defineConfig([
        * @remarks This is because empty interfaces have a use case in declaration merging.  Otherwise,
        * an empty interface can be a type alias, e.g., `type Foo = Bar` where `Bar` is an interface.
        */
-      '@typescript-eslint/no-empty-interface': 'off',
       '@typescript-eslint/no-empty-object-type': 'off',
       /**
        * Explicit `any` types are allowed.
@@ -95,7 +94,6 @@ export default defineConfig([
        * Sometimes we want unused variables to be present in base class method declarations.
        */
       '@typescript-eslint/no-unused-vars': 'warn',
-      '@typescript-eslint/no-var-requires': 'off',
 
       'import/export': 2,
       'import/named': 'warn',
