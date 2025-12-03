@@ -3,6 +3,7 @@ import fs from 'node:fs';
 
 import {includeIgnoreFile} from '@eslint/compat';
 import js from '@eslint/js';
+import stylistic from '@stylistic/eslint-plugin';
 import {defineConfig, globalIgnores} from 'eslint/config';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import globals from 'globals';
@@ -27,6 +28,7 @@ export default defineConfig([
       },
     },
     plugins: {
+      '@stylistic': stylistic,
       js,
       promise: pluginPromise,
     },
@@ -51,6 +53,29 @@ export default defineConfig([
       },
     },
     rules: {
+      '@stylistic/array-bracket-spacing': 2,
+      '@stylistic/arrow-parens': 'warn',
+      '@stylistic/arrow-spacing': 2,
+      '@stylistic/comma-spacing': 2,
+      '@stylistic/key-spacing': 2,
+      '@stylistic/keyword-spacing': 2,
+      '@stylistic/no-multi-spaces': 2,
+      '@stylistic/no-trailing-spaces': 2,
+      '@stylistic/no-whitespace-before-property': 2,
+      '@stylistic/quotes': [
+        2,
+        'single',
+        {
+          avoidEscape: true,
+          allowTemplateLiterals: 'always',
+        },
+      ],
+      '@stylistic/semi': 2,
+      '@stylistic/space-before-blocks': 2,
+      '@stylistic/space-in-parens': 2,
+      '@stylistic/space-infix-ops': 2,
+      '@stylistic/space-unary-ops': 2,
+
       /**
        * This rule is configured to warn if a `@ts-ignore` or `@ts-expect-error` directive is used
        * without explanation.
@@ -112,48 +137,18 @@ export default defineConfig([
       'promise/prefer-await-to-then': 1,
       'promise/param-names': 1,
 
-      'array-bracket-spacing': 2,
       'arrow-body-style': [1, 'as-needed'],
-      'arrow-parens': [1, 'always'],
-      'arrow-spacing': 2,
-      'comma-spacing': [
-        2,
-        {
-          before: false,
-          after: true,
-        },
-      ],
       'curly': [2, 'all'],
       'dot-notation': 2,
       'eqeqeq': [2, 'smart'],
-      'key-spacing': [
-        2,
-        {
-          mode: 'strict',
-          beforeColon: false,
-          afterColon: true,
-        },
-      ],
-      'keyword-spacing': 2,
       'no-buffer-constructor': 1,
       'no-console': 2,
       'no-dupe-class-members': 'off',
       'no-empty': 0,
-      'no-multi-spaces': 2,
       'no-prototype-builtins': 1,
       'no-redeclare': 'off',
-      'no-trailing-spaces': 2,
       'no-var': 2,
-      'no-whitespace-before-property': 2,
       'object-shorthand': 2,
-      'quotes': [
-        2,
-        'single',
-        {
-          avoidEscape: true,
-          allowTemplateLiterals: true,
-        },
-      ],
       'radix': [2, 'always'],
       'require-atomic-updates': 0,
       /**
@@ -163,17 +158,6 @@ export default defineConfig([
        * `return await somePromise` have their own use-cases.
        */
       'require-await': 'off',
-      'semi': [2, 'always'],
-      'space-before-blocks': [2, 'always'],
-      'space-in-parens': [2, 'never'],
-      'space-infix-ops': 2,
-      'space-unary-ops': [
-        2,
-        {
-          words: true,
-          nonwords: false,
-        },
-      ],
     }
   },
 
