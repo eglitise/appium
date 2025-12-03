@@ -37,7 +37,7 @@ export default defineConfig([
       promise: pluginPromise,
     },
     extends: [
-      js.configs.recommended,
+      'js/recommended',
       'promise/flat/recommended',
       'import-x/flat/recommended',
       tsConfigs.recommended,
@@ -135,8 +135,8 @@ export default defineConfig([
       'promise/prefer-await-to-then': 'warn',
       'promise/param-names': 'warn',
 
-      'arrow-body-style': ['warn', 'as-needed'],
-      'curly': ['error', 'all'],
+      'arrow-body-style': 'warn',
+      'curly': 'error',
       'dot-notation': 'error',
       'eqeqeq': ['error', 'smart'],
       'no-console': 'error',
@@ -146,7 +146,7 @@ export default defineConfig([
       'no-redeclare': 'off',
       'no-var': 'error',
       'object-shorthand': 'error',
-      'radix': ['error', 'always'],
+      'radix': 'error',
       'require-atomic-updates': 'off',
       /**
        * Allow `async` functions without `await`.
