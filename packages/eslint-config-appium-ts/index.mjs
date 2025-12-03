@@ -124,12 +124,6 @@ export default defineConfig([
       'n/no-deprecated-api': 'warn',
 
       'promise/catch-or-return': 'warn',
-      /**
-       * Allow native `Promise`s.
-       * @remarks Originally, this was so that we could use [bluebird](https://npm.im/bluebird)
-       * everywhere, but this is not strictly necessary.
-       */
-      'promise/no-native': 'off',
       'promise/no-return-wrap': 'warn',
       'promise/prefer-await-to-callbacks': 'warn',
       'promise/prefer-await-to-then': 'warn',
@@ -140,11 +134,8 @@ export default defineConfig([
       'dot-notation': 'error',
       'eqeqeq': ['error', 'smart'],
       'no-console': 'error',
-      'no-dupe-class-members': 'off',
       'no-empty': 'off',
       'no-prototype-builtins': 'warn',
-      'no-redeclare': 'off',
-      'no-var': 'error',
       'object-shorthand': 'error',
       'radix': 'error',
       'require-atomic-updates': 'off',
@@ -183,7 +174,6 @@ export default defineConfig([
       'mocha/max-top-level-suites': 'off',
       'mocha/no-exclusive-tests': 'error',
       'mocha/no-exports': 'off',
-      'mocha/no-mocha-arrows': 'error',
       'mocha/no-pending-tests': 'off',
       'mocha/no-setup-in-describe': 'off',
     },
