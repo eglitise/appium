@@ -135,6 +135,7 @@ export class MJpegStream extends Writable {
       this.lastChunk = null;
     };
 
+    // TODO: replace with native Promises in Appium 4
     const startPromise = new B<void>((res, rej) => {
       this.registerStartSuccess = res;
       this.registerStartFailure = rej;
