@@ -44,6 +44,7 @@ export class ProxyRequest {
   private async _makeRacingTimer(): Promise<void> {
     return await new Promise((resolve, reject) => {
       this._ee.once(FINISH_EVENT, resolve);
+      // TODO: replace with a native implementation in Appium 4
       this._ee.once(CANCEL_EVENT, () => reject(new CancellationError(
         'The request has been cancelled'
       )));

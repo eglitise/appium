@@ -4,6 +4,7 @@ import express from 'express';
 import type {Express, RequestHandler} from 'express';
 import http from 'node:http';
 import type {Server as HttpServer} from 'node:http';
+import {promisify} from 'node:util';
 import favicon from 'serve-favicon';
 import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
@@ -34,7 +35,6 @@ import {
   removeAllWebSocketHandlers,
   getWebSocketHandlers,
 } from './websocket';
-import B from 'bluebird';
 import {DEFAULT_BASE_PATH} from '../constants';
 import {fs, timing} from '@appium/support';
 import type {
@@ -123,7 +123,8 @@ export async function server(opts: ServerOpts): Promise<AppiumServer> {
   const app = express();
   const httpServer = await createServer(app, cliArgs);
 
-  return await new B<AppiumServer>(async (resolve, reject) => {
+  // eslint-disable-next-line no-async-promise-executor -- see below
+  return await new Promise<AppiumServer>(async (resolve, reject) => {
     // we put an async function as the promise constructor because we want some things to happen in
     // serial (application of plugin updates, for example). But we still need to use a promise here
     // because some elements of server start failure only happen in httpServer listeners. So the
@@ -269,7 +270,7 @@ async function createServer(
 
   const certKey = [sslCertificatePath, sslKeyPath];
   const zipped = _.zip(
-    await B.all(certKey.map((p) => fs.exists(p))),
+    await Promise.all(certKey.map((p) => fs.exists(p))),
     ['certificate', 'key'],
     certKey
   ) as [boolean, string, string][];
@@ -280,7 +281,7 @@ async function createServer(
       );
     }
   }
-  const [cert, key] = await B.all(
+  const [cert, key] = await Promise.all(
     certKey.map((p) => fs.readFile(p, 'utf8'))
   ) as [string, string];
   log.debug('Enabling TLS/SPDY on the server using the provided certificate');
@@ -345,7 +346,7 @@ function configureHttp({
   // all connections are closed and the `close` event is emitted
   const originalClose = appiumServer.close.bind(appiumServer);
   appiumServer.close = async () =>
-    await new B<void>((_resolve, _reject) => {
+    await new Promise<void>((_resolve, _reject) => {
       log.info('Closing Appium HTTP server');
       const timer = new timing.Timer().start();
       const onTimeout = setTimeout(() => {
@@ -405,9 +406,7 @@ async function startServer({
   requestTimeout,
 }: StartServerOpts): Promise<void> {
   // If the hostname is omitted, the server will accept connections on any IP address
-  const start = B.promisify(httpServer.listen, {
-    context: httpServer,
-  }) as (port: number, hostname?: string) => B<HttpServer>;
+  const start = promisify(httpServer.listen.bind(httpServer));
   const startPromise = start(port, hostname);
   httpServer.keepAliveTimeout = keepAliveTimeout;
   if (_.isInteger(requestTimeout)) {
